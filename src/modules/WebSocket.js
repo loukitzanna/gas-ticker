@@ -1,6 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 import React, { useContext, useState } from 'react';
-import useWebSocket, { ReadyState } from 'react-use-websocket';
+import useWebSocket from 'react-use-websocket';
 import { Button, Clock, Box } from 'grommet';
 
 import { GraphContext } from '../hooks/useGasGraph';
