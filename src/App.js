@@ -8,11 +8,9 @@ import { Grommet,
 
 import WebSocket from './modules/WebSocket';
 import Graph from './modules/Graph';
-import GraphContext, { initialData } from './hooks/useGasGraph';
-import { useContext } from 'react';
+import GraphContext from './hooks/useGasGraph';
 
 function App() {
-  const value = useContext(GraphContext);
   return (
     <div className="App">
       <Grommet plain full>
