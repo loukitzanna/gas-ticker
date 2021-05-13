@@ -52,7 +52,7 @@ export default () => {
 
     return (
         <div>
-            <Clock type="digital" alignSelf="center" />
+            <Clock type="digital" alignSelf="center" hourLimit="12" />
             <Box direction="row" align="center" justify="center">
                 <div>
                     <Button
@@ -60,9 +60,10 @@ export default () => {
                         icon={playState === 'play' ? (
                             <Pause />
                             ) : (
-                                <PlayFill />
-                                )}
-                                />
+                            <PlayFill />
+                            )
+                        }
+                    />
                 </div>
                 <div>Current gas is: {standardGas}</div>
 

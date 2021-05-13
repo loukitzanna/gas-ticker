@@ -35,6 +35,7 @@ const GraphOptions = ({ values, setValues }) => {
 
 const GraphContainer = styled.div`
     height: 40vh;
+    margin-bottom: 20px;
 `;
 
 const Graph = () => {

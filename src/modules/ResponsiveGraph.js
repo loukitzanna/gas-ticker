@@ -14,13 +14,43 @@ const Graph = ({ data, values }) => (
             tickValues: 'every minute',
         }}
         axisRight={{}}
-        margin={{ top: 30, right: 50, bottom: 60, left: 50 }}
+        margin={{ top: 10, right: 50, bottom: 30, left: 50 }}
         enablePoints={false}
         enableGridX={true}
         animate={false}
-        isInteractive={false}
-        enableSlices={false}
+        isInteractive={true}
+        enableSlices="x"
         useMesh={true}
+        enableArea={true}
+        sliceTooltip={({ slice, ...rest }) => {
+            console.log(rest);
+            return (
+                <div
+                    style={{
+                        background: 'white',
+                        padding: '9px 12px',
+                        border: '1px solid #ccc',
+                    }}
+                >
+                    {slice.points.map(point => (
+                        <div
+                            key={point.id}
+                            style={{
+                                // color: point.serieColor,
+                                padding: '3px 0',
+                            }}
+                        >
+                            <strong>{point.data.yFormatted}</strong>
+                        </div>
+                    ))}
+                    {
+                        // x && (
+                            // <div>{x.toTimeString()}</div>
+                        // )
+                    }
+                </div>
+            )
+        }}
     />
 );
 
