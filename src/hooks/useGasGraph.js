@@ -12,11 +12,10 @@ const GraphWrapper = ({ children }) => {
         temp.push(newDatum);
         lastTimestamp.current = newDatum?.timestamp;
     
-        if (data.length > 10) { // keep it low while debugging
+        if (data.length > 500) {
             temp.pop();
         }
         setData(temp);
-        console.log(temp);
     
         return temp;
     }

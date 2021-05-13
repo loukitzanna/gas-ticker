@@ -59,9 +59,9 @@ export default () => {
                 <Button
                     onClick={handleTogglePlay}
                     icon={playState === 'play' ? (
-                        <PlayFill />
-                    ) : (
                         <Pause />
+                        ) : (
+                        <PlayFill />
                     )}
                 />
             </div>

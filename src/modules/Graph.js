@@ -10,7 +10,7 @@ const MyResponsiveLine = ({ data }) => (
             data
         }]}
         xScale={{ type: 'time', format: 'native' }}
-        yScale={{ type: 'linear' }}
+        yScale={{ type: 'linear', min: 30, max: 300 }}
         axisBottom={{
             format: '%H:%M:%S',
             // tickValues: 'every second',
@@ -18,7 +18,8 @@ const MyResponsiveLine = ({ data }) => (
             // legendPosition: 'middle',
             // legendOffset: 46,
         }}
-        margin={{ top: 20, right: 20, bottom: 60, left: 80 }}
+        axisRight={{}}
+        margin={{ top: 30, right: 50, bottom: 60, left: 50 }}
         enablePoints={false}
         enableGridX={true}
         animate={false}
@@ -36,8 +37,6 @@ const Graph = () => {
     return (
         <div
         >
-            <p>Graph to follow</p>
-
             <GraphContainer data={data} >
                 <MyResponsiveLine
                     data={data}
