@@ -12,9 +12,8 @@ export default () => {
     const [standardGas, setStandardGas] = useState();
     const [playState, setPlayState] = useState('play');
     const { setGraphData } = useContext(GraphContext);
-    const {
-        readyState,
-    } = useWebSocket(websocketUrl, {
+    
+    useWebSocket(websocketUrl, {
         onMessage: (event) => {
             if (playState === 'pause') {
                 return;
