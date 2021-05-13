@@ -2,6 +2,7 @@ import './App.css';
 import { Grommet,
   Main,
   Heading,
+  Header,
   Card,
   CardBody,
 } from 'grommet';
@@ -14,7 +15,9 @@ function App() {
   return (
     <div className="App">
       <Grommet plain full>
-        <Heading level='3' margin='none'>Gwei Gas Prices Ticker</Heading>
+        <Header background={{ color: "neutral-3", dark: 'true' }}>
+          <Heading level="3" margin='small'>Gwei Gas Prices Ticker</Heading>
+        </Header>
         <Main 
           pad="large" 
           background={{

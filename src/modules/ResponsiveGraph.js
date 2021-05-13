@@ -22,8 +22,7 @@ const Graph = ({ data, values }) => (
         enableSlices="x"
         useMesh={true}
         enableArea={true}
-        sliceTooltip={({ slice, ...rest }) => {
-            console.log(rest);
+        sliceTooltip={({ slice }) => {
             return (
                 <div
                     style={{
