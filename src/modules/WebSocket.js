@@ -1,7 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
 import React, { useContext, useState } from 'react';
 import useWebSocket, { ReadyState } from 'react-use-websocket';
-import { Button, Clock } from 'grommet';
+import { Button, Clock, Box } from 'grommet';
 
 import { GraphContext } from '../hooks/useGasGraph';
 import { Pause, PlayFill } from 'grommet-icons';
@@ -53,18 +53,20 @@ export default () => {
     return (
         <div>
             <Clock type="digital" alignSelf="center" />
-            <div>The WebSocket is currently {connectionStatus}</div>
-            <div>Current gas is: {standardGas}</div>
-            <div>
-                <Button
-                    onClick={handleTogglePlay}
-                    icon={playState === 'play' ? (
-                        <Pause />
-                        ) : (
-                        <PlayFill />
-                    )}
-                />
-            </div>
+            <Box direction="row" align="center" justify="center">
+                <div>
+                    <Button
+                        onClick={handleTogglePlay}
+                        icon={playState === 'play' ? (
+                            <Pause />
+                            ) : (
+                                <PlayFill />
+                                )}
+                                />
+                </div>
+                <div>Current gas is: {standardGas}</div>
+
+            </Box>
         </div>
     )
 }

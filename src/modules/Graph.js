@@ -1,49 +1,56 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { ResponsiveLine } from '@nivo/line'
+import { Box, Stack, Text, RangeSelector } from 'grommet';
 import { GraphContext } from '../hooks/useGasGraph';
+import ResponsiveLine from './ResponsiveGraph';
 
-const MyResponsiveLine = ({ data }) => (
-    <ResponsiveLine
-        data={[{
-            id: 'gwei',
-            data
-        }]}
-        xScale={{ type: 'time', format: 'native' }}
-        yScale={{ type: 'linear', min: 30, max: 300 }}
-        axisBottom={{
-            format: '%H:%M:%S',
-            // tickValues: 'every second',
-            // legend: `${this.formatTime(dataA[0].x)} ——— ${this.formatTime(last(dataA).x)}`,
-            // legendPosition: 'middle',
-            // legendOffset: 46,
-        }}
-        axisRight={{}}
-        margin={{ top: 30, right: 50, bottom: 60, left: 50 }}
-        enablePoints={false}
-        enableGridX={true}
-        animate={false}
-        isInteractive={false}
-        enableSlices={false}
-        useMesh={true}
-    />
-);
+const GraphOptions = ({ values, setValues }) => {
+    const scale = Array(30).fill('a').map((i, idx) => idx * 10);
+
+    return (
+        <Stack>
+            <Box direction="row" justify="between">
+                {scale.map(value => (
+                <Box key={value} pad="small" border={false}>
+                    <Text >
+                    {value}
+                    </Text>
+                </Box>
+                ))}
+            </Box>
+            <RangeSelector
+                direction="horizontal"
+                invert={false}
+                min={0}
+                max={300}
+                size="full"
+                round="small"
+                values={values}
+                onChange={values => setValues(values)}
+                step={10}
+            />
+            </Stack>
+    )
+}
+
 const GraphContainer = styled.div`
     height: 40vh;
 `;
 
 const Graph = () => {
     const { data } = useContext(GraphContext);
+    const [values, setValues] = React.useState([100, 250]);
+
     return (
-        <div
-        >
+        <Box>
             <GraphContainer data={data} >
-                <MyResponsiveLine
+                <ResponsiveLine
                     data={data}
+                    values={values}
                 />
-            
             </GraphContainer>
-        </div>
+            <GraphOptions values={values} setValues={setValues} />
+        </Box>
     )
 }
 
