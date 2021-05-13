@@ -1,23 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import { Grommet,
+  Main,
+  Heading,
+} from 'grommet';
+
+import WebSocket from './modules/WebSocket';
+import Graph from './modules/Graph';
+import GraphContext, { initialData } from './hooks/useGasGraph';
+import { useContext } from 'react';
 
 function App() {
+  const value = useContext(GraphContext);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Grommet plain full>
+        <Heading level='3' margin='none'>Gwei Gas Prices Ticker</Heading>
+        <Main pad="large">
+          <GraphContext>
+            <WebSocket />
+            <Graph />
+          </GraphContext>
+        </Main>
+      </Grommet>
     </div>
   );
 }
