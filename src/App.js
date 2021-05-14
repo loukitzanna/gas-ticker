@@ -17,7 +17,7 @@ function App() {
   return (
     <div className="App">
       <Grommet plain full>
-        <Header background={{ color: "neutral-3", dark: 'true' }}>
+        <Header background={{ color: "accent-1", dark: false }}>
           <Heading level="3" margin='small'>Gwei Gas Prices Ticker</Heading>
         </Header>
         <Main 
