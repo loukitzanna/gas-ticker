@@ -2,16 +2,17 @@
 import React, { useContext, useState } from 'react';
 import useWebSocket from 'react-use-websocket';
 import { Button, Clock, Box } from 'grommet';
-
-import { GraphContext } from '../hooks/useGasGraph';
 import { Pause, PlayFill } from 'grommet-icons';
 
-const websocketUrl = 'wss://www.gasnow.org/ws';
+import { GraphContext } from '../../hooks/DataLoader';
+
+// const websocketUrl = 'wss://stream.binance.com:9443/ws/!miniTicker@arr';
+const websocketUrl = 'wss://ws-feed.gdax.com';
 
 export default () => {
-    const [standardGas, setStandardGas] = useState();
+    const [ethPrice, setEthPrice] = useState();
     const [playState, setPlayState] = useState('play');
-    const { setGraphData } = useContext(GraphContext);
+    // const { setGraphData } = useContext(GraphContext);
     
     useWebSocket(websocketUrl, {
         onMessage: (event) => {
@@ -20,15 +21,17 @@ export default () => {
             }
 
             const message = (JSON.parse(event.data)).data;
+
+            console.log(message);
             const newGas = Math.trunc(message?.gasPrices?.standard / 1000000000);
-            if (newGas !== standardGas) {
-                setStandardGas(newGas);
-                setGraphData({
-                    y: newGas,
-                    x: new Date(message.timestamp),
-                    // x: message.timestamp,
-                    timestamp: message.timestamp,
-                })
+            if (newGas !== ethPrice) {
+                setEthPrice(newGas);
+                // setGraphData({
+                //     y: newGas,
+                //     x: new Date(message.timestamp),
+                //     // x: message.timestamp,
+                //     timestamp: message.timestamp,
+                // })
             }
         }
     });
@@ -64,7 +67,7 @@ export default () => {
                         }
                     />
                 </div>
-                <div>Current gas is: {standardGas}</div>
+                <div>Current ETH Price is: {ethPrice}</div>
 
             </Box>
         </div>

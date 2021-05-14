@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Box, Stack, Text, RangeSelector } from 'grommet';
-import { GraphContext } from '../hooks/useGasGraph';
+import { GraphContext } from '../../hooks/DataLoader';
 import ResponsiveLine from './ResponsiveGraph';
 
 const GraphOptions = ({ values, setValues }) => {

@@ -7,9 +7,11 @@ import { Grommet,
   CardBody,
 } from 'grommet';
 
-import WebSocket from './modules/WebSocket';
-import Graph from './modules/Graph';
-import GraphContext from './hooks/useGasGraph';
+import WebSocket from './modules/Gas/WebSocket';
+import EthSocket from './modules/Eth/EthSocket';
+import EthGraph from './modules/Eth/EthPrice';
+import Graph from './modules/Gas/Graph';
+import GraphContext from './hooks/DataLoader';
 
 function App() {
   return (
@@ -31,6 +33,12 @@ function App() {
               <CardBody>
                 <WebSocket />
                 <Graph />
+              </CardBody>
+            </Card>
+            <Card pad="medium" background="light-1">
+              <CardBody>
+                {/* <EthSocket /> */}
+                <EthGraph />
               </CardBody>
             </Card>
           </GraphContext>

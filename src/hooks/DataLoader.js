@@ -5,9 +5,9 @@ export const GraphContext = React.createContext()
 const GraphWrapper = ({ children }) => {
     const [ data, setData ] = useState([]);
     const lastTimestamp = useRef(''); 
+    // TODO: onload, request historical data
     
     const setGraphData = (newDatum) => {
-        console.log(newDatum);
         const temp = [...data];
         temp.push(newDatum);
         lastTimestamp.current = newDatum?.timestamp;
