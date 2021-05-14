@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Box } from 'grommet';
-import { Pause, PlayFill } from 'grommet-icons';
+import { Button, Box, Spinner } from 'grommet';
+import { Pause, PlayFill, Update } from 'grommet-icons';
 
 // const fetchHistoricEthPrices = async () => {
 //     // a reasonable amount of time...
@@ -26,28 +26,30 @@ import { Pause, PlayFill } from 'grommet-icons';
 
 // }
 
-const fetchCurrentEthPrice = async (setData) => {
-    console.log(process.env);
+const fetchCurrentEthPrice = async (setData, setLoading) => {
     if (process.env.REACT_APP_ETHERSCAN_API_KEY) {
-        console.log('🎂🎂', process.env.REACT_APP_ETHERSCAN_API_KEY);
+        setLoading(true);
         try {
             let response = await fetch(`https://api.etherscan.io/api?module=stats&action=ethprice&apikey=${process.env.REACT_APP_ETHERSCAN_API_KEY}`);
             response = await response.json();
             setData(Number(response.result.ethusd))
-            return response;
         } catch(err) {
             console.log(err);
         }
+        setTimeout(() => {
+            setLoading(false);
+        }, 2000);
     }
 
 }
 
 const Graph = () => {
     const [data, setData] = useState(0);
+    const [loading, setLoading] = useState(false);
     const [playState, setPlayState] = useState('play');
 
     useEffect(() => {
-        fetchCurrentEthPrice(setData);
+        fetchCurrentEthPrice(setData, setLoading);
         // while(playState === 'play') {
         //     setTimeout(() => {
         //     }, 10000)
@@ -56,6 +58,7 @@ const Graph = () => {
     }, [])
 
     const handleTogglePlay = () => {
+
         if (playState === 'play') {
             setPlayState('pause');
         } else {
@@ -63,8 +66,12 @@ const Graph = () => {
         }
     }
 
+    const handleRefetchPrice = () => {
+        fetchCurrentEthPrice(setData, setLoading);
+    }
+
     return (
-        <Box direction="row" align="center" justify="center">
+        <Box direction="row" align="center" justify="center" gap="small">
         <div>
             <Button
                 onClick={handleTogglePlay}
@@ -77,6 +84,17 @@ const Graph = () => {
             />
         </div>
         <div>Current ETH price is: {data.toLocaleString(undefined, { style: 'currency', currency: 'USD' })}</div>
+        <div>
+            {
+                loading ? (
+                <Spinner /> ): (
+                        <Button
+                            onClick={handleRefetchPrice}
+                            icon={<Update />}
+                        />
+                    )
+            }
+        </div>
 
     </Box>
     )
