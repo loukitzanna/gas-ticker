@@ -1,10 +1,8 @@
 /* eslint-disable import/no-anonymous-default-export */
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import useWebSocket from 'react-use-websocket';
 import { Button, Clock, Box } from 'grommet';
 import { Pause, PlayFill } from 'grommet-icons';
-
-import { GraphContext } from '../../hooks/DataLoader';
 
 // const websocketUrl = 'wss://stream.binance.com:9443/ws/!miniTicker@arr';
 const websocketUrl = 'wss://ws-feed.gdax.com';

@@ -8,7 +8,7 @@ import { Grommet,
 } from 'grommet';
 
 import WebSocket from './modules/Gas/WebSocket';
-import EthSocket from './modules/Eth/EthSocket';
+// import EthSocket from './modules/Eth/EthSocket';
 import EthGraph from './modules/Eth/EthPrice';
 import Graph from './modules/Gas/Graph';
 import GraphContext from './hooks/DataLoader';

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Clock, Box } from 'grommet';
-
-import { GraphContext } from '../../hooks/DataLoader';
+import { Button, Box } from 'grommet';
 import { Pause, PlayFill } from 'grommet-icons';
+
 // const fetchHistoricEthPrices = async () => {
 //     // a reasonable amount of time...
 //     const today = new Date();
