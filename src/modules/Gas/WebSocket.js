@@ -1,7 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
 import React, { useContext, useState } from 'react';
 import useWebSocket from 'react-use-websocket';
-import { Button, Clock, Box } from 'grommet';
+import { Button, Clock, Box, Text, Paragraph } from 'grommet';
 
 import { GraphContext } from '../../hooks/DataLoader';
 import { Pause, PlayFill } from 'grommet-icons';
@@ -51,7 +51,7 @@ export default () => {
 
     return (
         <div>
-            <Clock type="digital" alignSelf="center" hourLimit="12" />
+            <Clock type="digital" alignSelf="center" hourLimit={12} />
             <Box direction="row" align="center" justify="center">
                 <div>
                     <Button
@@ -64,7 +64,7 @@ export default () => {
                         }
                     />
                 </div>
-                <div>Current gas is: {standardGas}</div>
+                <Paragraph>Current gas is: <Text as="span" color={standardGas > 100? 'neutral-1' : ''}>{standardGas}</Text></Paragraph>
 
             </Box>
         </div>

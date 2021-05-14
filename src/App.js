@@ -35,7 +35,7 @@ function App() {
                 <Graph />
               </CardBody>
             </Card>
-            <Card pad="medium" background="light-1">
+            <Card pad="medium" background="light-1" margin={{ top: 'small'}}>
               <CardBody>
                 {/* <EthSocket /> */}
                 <EthGraph />

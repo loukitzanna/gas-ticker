@@ -40,7 +40,7 @@ const GraphContainer = styled.div`
 
 const Graph = () => {
     const { data } = useContext(GraphContext);
-    const [values, setValues] = React.useState([100, 250]);
+    const [values, setValues] = React.useState([30, 100]);
 
     return (
         <Box>
